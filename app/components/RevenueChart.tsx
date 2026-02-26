@@ -10,6 +10,7 @@ import {
     Title,
     Tooltip,
     Filler,
+    TooltipItem,
 } from "chart.js";
 
 ChartJS.register(
@@ -76,8 +77,8 @@ export default function RevenueChart() {
                 cornerRadius: 8,
                 displayColors: false,
                 callbacks: {
-                    label: function (context: { dataset: { label: string }; parsed: { y: number } }) {
-                        return `${context.dataset.label}: R$ ${context.parsed.y.toLocaleString("pt-BR")}`;
+                    label: function (context: TooltipItem<"line">) {
+                        return `${context.dataset.label || ""}: R$ ${(context.parsed.y ?? 0).toLocaleString("pt-BR")}`;
                     },
                 },
             },
